@@ -16,7 +16,8 @@
     "db:down": "docker compose stop",
     "db:migrate": "npm run db:migrate -w @relaydesk/api",
     "db:seed": "npm run db:seed -w @relaydesk/api",
-    "test": "npm run build -w @relaydesk/contracts && npm run test -w @relaydesk/api"
+    "test": "node scripts/test.mjs",
+    "setup": "node scripts/setup.mjs"
   },
   "devDependencies": {
     "@types/node": "26.6.6",
