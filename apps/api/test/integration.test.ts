@@ -555,3 +555,39 @@ test("queue paging, filters and aggregates agree with database-backed records", 
   assert.equal(d.open, count.rows[0].n);
   assert.equal(d.daily.length, 7);
 });
+
+test("concurrent administrator deactivation cannot remove both actors", async () => {
+  const createAdmin = async (email: string) => {
+    const r = await call("/users", admin, "POST", {
+      name: email.split("@")[0],
+      email,
+      role: "ADMIN",
+      teamId: null,
+      password,
+    });
+    assert.equal(r.status, 201);
+    return { id: r.body.data.id, cookie: await login(email) };
+  };
+  const a = await createAdmin("concurrent-a@relaydesk.test"),
+    b = await createAdmin("concurrent-b@relaydesk.test");
+  const result = await Promise.all([
+    call("/users/" + b.id, a.cookie, "PUT", {
+      name: "B",
+      role: "ADMIN",
+      teamId: null,
+      active: false,
+    }),
+    call("/users/" + a.id, b.cookie, "PUT", {
+      name: "A",
+      role: "ADMIN",
+      teamId: null,
+      active: false,
+    }),
+  ]);
+  assert.equal(result.filter((r) => r.status === 200).length, 1);
+  const active = await pool.query(
+    "SELECT count(*)::int AS n FROM users WHERE id=ANY($1::uuid[]) AND active=true",
+    [[a.id, b.id]],
+  );
+  assert.equal(active.rows[0].n, 1);
+});

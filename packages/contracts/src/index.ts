@@ -1,4 +1,5 @@
 import { z } from "zod";
+z.config(z.locales.tr());
 export const roles = ["ADMIN", "AGENT", "REQUESTER"] as const;
 export const statuses = [
   "NEW",
