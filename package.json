@@ -1,0 +1,28 @@
+{
+  "name": "relaydesk",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "npm run build -w @relaydesk/contracts && concurrently -k -n api,web \"npm run dev -w @relaydesk/api\" \"npm run dev -w @relaydesk/web\"",
+    "build": "npm run build -w @relaydesk/contracts && npm run build -w @relaydesk/api && npm run build -w @relaydesk/web",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose stop",
+    "db:migrate": "npm run db:migrate -w @relaydesk/api",
+    "db:seed": "npm run db:seed -w @relaydesk/api",
+    "test": "node scripts/test.mjs",
+    "setup": "node scripts/setup.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "concurrently": "10.0.6",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
