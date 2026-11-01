@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+.env
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo
+coverage/
+test-results/
+.playwright-cli/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/
