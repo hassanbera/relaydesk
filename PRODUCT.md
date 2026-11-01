@@ -18,9 +18,9 @@ A substantial IT service management application, rather than a small CRUD exampl
 
 The user's selected libraries must be used in real application flows. Keep backend Model / Repository / Service / Controller boundaries. Use a separate GitHub repository and meaningful incremental commits with PR publication, consistent with the user's standing preferences. Keep the interface focused on the IT service workflows.
 
-## Open Decisions and Working Assumptions
+## Confirmed Scope and Working Assumptions
 
-The audience question is pending. The announced working assumption is internal IT support: employees submit incidents and service requests; agents triage; administrators manage access and approvals. The proposed feature scope includes SLA clocks, assignment, internal notes, audit history, asset inventory, knowledge articles and change approvals. The name RelayDesk is an implementation choice, not an existing customer or brand claim.
+The user confirmed internal IT support as the primary use case: employees submit incidents and service requests; agents triage; administrators manage access and approvals. The implemented feature scope includes SLA clocks, assignment, internal notes, audit history, asset inventory, knowledge articles and change approvals. The name RelayDesk is an implementation choice, not an existing customer or brand claim.
 
 ## Evidence on Hand
 

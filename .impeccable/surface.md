@@ -1,6 +1,6 @@
 # RelayDesk work queue
 
-Mode: Operate. Primary job: triage, assign and resolve internal IT requests. Working audience assumption is internal IT; user clarification remains open.
+Mode: Operate. Primary job: triage, assign and resolve internal IT requests. The user confirmed the audience: internal IT support, with employee requests, teams, inventory and change approvals.
 
 ## Direction contract
 
